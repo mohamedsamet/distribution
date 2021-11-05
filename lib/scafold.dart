@@ -25,12 +25,10 @@ class _MainScafoldState extends State<MainScafold> {
         ],
       ),
       body: Center(
-        child: Counter(),
-      ),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        child: Icon(Icons.add),
-        tooltip: 'Add',
+        child: MaterialApp(initialRoute: '/', routes: {
+          Counter.url: (context) => Counter(),
+          RandomWords.url: (context) => RandomWords()
+        }),
       ),
     );
   }

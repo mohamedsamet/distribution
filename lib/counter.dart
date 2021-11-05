@@ -1,6 +1,8 @@
+import 'package:distribution/random-words.dart';
 import 'package:flutter/material.dart';
 
 class Counter extends StatefulWidget {
+  static const url = '/';
   const Counter({Key? key}) : super(key: key);
 
   @override
@@ -9,12 +11,18 @@ class Counter extends StatefulWidget {
 
 class _CounterState extends State<Counter> {
   int counter = 0;
-
   void increment() {
     setState(() {
       print('incrementing: $counter');
       counter++;
     });
+  }
+
+  void navigate() {
+    Navigator.pushNamed(
+        context,
+        RandomWords.url
+    );
   }
 
   @override
@@ -23,9 +31,29 @@ class _CounterState extends State<Counter> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            child: Image.asset('icons/img.png', width: 110.0,),
-            margin: EdgeInsets.symmetric(vertical: 20.0),
+          Stack(
+            children: [
+              FloatingActionButton(
+                  onPressed: navigate,
+                  backgroundColor: Colors.deepOrange,
+                  splashColor: Colors.green,
+                  child: Text('Nav')
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                child: Icon(Icons.star, color: Colors.green, size: 50),
+                margin: EdgeInsets.symmetric(vertical: 20.0),
+              ),
+              Container(
+                child: Image.asset('icons/img.png', width: 110.0, fit: BoxFit.cover),
+                margin: EdgeInsets.symmetric(vertical: 20.0),
+              ),
+            ]
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
