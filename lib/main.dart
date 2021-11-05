@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/widgets.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: RandomWords(),
+      home: SafeArea(
+        child: RandomWords(),
+      ),
       );
   }
 }
@@ -25,15 +28,28 @@ class RandomWords extends StatefulWidget {
 
 class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
+  final _biggerFont = const TextStyle(fontSize: 18.0, color: Color.fromRGBO(30, 10, 123, 1), fontWeight: FontWeight.bold);
+  final _textDire = TextDirection.ltr;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Liste des suggestion'),
+        leading: const IconButton(
+            onPressed: null,
+            icon: Icon(Icons.account_tree)),
+        title: const Text('توزيع', textDirection: TextDirection.ltr,),
+        actions: [
+          IconButton(onPressed: null, icon: Icon(Icons.ac_unit_outlined)),
+          IconButton(onPressed: null, icon: Icon(Icons.alarm_on_sharp)),
+        ],
       ),
       body: _buildListView(),
-    );
+      floatingActionButton: const FloatingActionButton(
+          onPressed: null,
+          child: Icon(Icons.add),
+          tooltip: 'Add',
+      ),
+      );
   }
 
   Widget _buildListView() {
@@ -53,10 +69,12 @@ class _RandomWordsState extends State<RandomWords> {
   Widget _buildRow(WordPair pair) {
     return ListTile(
       title: Text(
-        pair.asPascalCase,
+        pair.asSnakeCase,
         style: _biggerFont,
+        textDirection: _textDire,
       ),
     );
   }
 }
+
 
