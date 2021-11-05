@@ -12,18 +12,35 @@ class _CounterState extends State<Counter> {
 
   void increment() {
     setState(() {
+      print('incrementing: $counter');
       counter++;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        ElevatedButton(onPressed: increment, child: const Text('Incerment')),
-        const SizedBox(width: 18),
-        Text('Count: $counter'),
-      ],
+    return Material(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            child: Image.asset('icons/img.png', width: 110.0,),
+            margin: EdgeInsets.symmetric(vertical: 20.0),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                child: ElevatedButton(onPressed: increment, child: const Text('Incerment')),
+                margin: EdgeInsets.symmetric(horizontal: 10),
+              ),
+              Container(
+                child: Text('Count: $counter', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18.0)),
+              ),
+            ],
+          )
+        ],
+      )
     );
   }
 }

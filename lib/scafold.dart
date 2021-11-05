@@ -24,7 +24,9 @@ class _MainScafoldState extends State<MainScafold> {
           IconButton(onPressed: null, icon: Icon(Icons.alarm_on_sharp)),
         ],
       ),
-      body: RandomWords(),
+      body: Center(
+        child: Counter(),
+      ),
       floatingActionButton: const FloatingActionButton(
         onPressed: null,
         child: Icon(Icons.add),
