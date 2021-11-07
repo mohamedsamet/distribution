@@ -17,7 +17,13 @@ class _RandomWordsState extends State<RandomWords> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 40,
+        title: Text('Distribution Radom words'),
+        centerTitle: true,
+    ),
+    body: Stack(
       children: [
         ListView.builder(
           padding: const EdgeInsets.all(16.0),
@@ -28,18 +34,9 @@ class _RandomWordsState extends State<RandomWords> {
           _suggestions.addAll(generateWordPairs().take(10));
           }
           return _buildRow(_suggestions[index]);
-          }),
-        Container(
-          child: FloatingActionButton(
-              onPressed: () {
-                Navigator.pop(context);
-                },
-              backgroundColor: Colors.deepOrange,
-              splashColor: Colors.green,
-              child: Text('Nav')
-          ),
-        ),
+          })
       ]
+    )
     );
   }
 
